@@ -1,0 +1,27 @@
+<div fxFlex fxLayoutAlign="center">
+  <mat-card fxLayout="column" style="text-align: center; width: 35%; margin-top: 15%">
+    <mat-card-title>Student Sign In</mat-card-title>
+    <mat-card-subtitle>You must enter a valid student ID to proceed.</mat-card-subtitle>
+    <br />
+    <mat-card-content>
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmit(); signInForm.reset()" fxLayout="column">
+        <mat-form-field fxFlex appearance="fill">
+          <mat-label>Student ID:</mat-label>
+          <input matInput type="text" required id="txtStudentId" formControlName="studentId" />
+        </mat-form-field>
+        <button mat-raised-button type="submit" [disabled]="!signInForm.valid" color="primary" >Sign In</button>
+      </form>
+      <div class="msg-error" *ngIf="errorMessage" style="color: #D8000C; background-color:#FFD2D2; padding: 12px; margin: 10px 0px">
+        {{ errorMessage }}
+      </div>
+      <div *ngIf="form.studentId.errors && form.studentId.dirty">
+        <div class="msg-error" style="color: #D8000C; background-color:#FFD2D2; padding: 12px; margin: 10px 0px">
+          Student ID must be a numeric value.
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+</div>
+
+
